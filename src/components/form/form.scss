@@ -1,0 +1,27 @@
+$backgroundColor: #efefef;
+$radius: 40%;
+
+form {
+  display: inline-block;
+  margin: auto;
+  width: 200px;
+
+  label {
+    display: flex;
+    margin: 1rem 0;
+
+    &.methods {
+      span {
+        cursor: pointer;
+        margin-right: 1rem;
+        padding: 0.25rem 0.5rem;
+        background: #ccc;
+
+        &:hover,
+        &.active {
+          background: #fff;
+        }
+      }
+    }
+  }
+}
