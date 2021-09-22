@@ -2,13 +2,14 @@ $backgroundColor: #efefef;
 $radius: 40%;
 
 form {
-  display: inline-block;
-  margin: auto;
-  width: 200px;
-
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  // margin: auto;
+  width: 100vw;
   label {
     display: flex;
-    margin: 1rem 0;
+    margin: 1vw 5vw 1vw 2vw;
 
     &.methods {
       span {
@@ -16,12 +17,18 @@ form {
         margin-right: 1rem;
         padding: 0.25rem 0.5rem;
         background: #ccc;
-
+        &:focus {
+          background-color: blue;
+        }
         &:hover,
         &.active {
           background: #fff;
         }
       }
+    }
+
+    & input {
+      width: 30vw;
     }
   }
 }

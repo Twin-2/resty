@@ -1,9 +1,11 @@
-import './results.scss'
+import './results.scss';
+import ReactJson from 'react-json-view';
 
 function Results(props) {
+
     return (
         <section>
-            <pre>{props.data ? JSON.stringify(props.data, undefined, 2) : null}</pre>
+            <pre>{props.data ? <ReactJson src={props.data.body} /> : null}</pre>
         </section>
     )
 }
