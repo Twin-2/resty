@@ -2,13 +2,12 @@ $backgroundColor: #efefef;
 $radius: 40%;
 
 form {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  // margin: auto;
+  display: inline-block;
   width: 100vw;
   label {
     display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
     margin: 1vw 5vw 1vw 2vw;
 
     &.methods {

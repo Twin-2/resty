@@ -21,10 +21,10 @@ class App extends React.Component {
         };
     }
 
-    callApi = (requestParams) => {
+    callApi = async (requestParams) => {
         this.setState({ requestParams });
         try {
-            superagent[requestParams.method](requestParams.url)
+            await superagent(requestParams)
                 .then(data => this.setState({ data: data }))
         } catch (err) {
             this.setState({ data: err })
