@@ -2,7 +2,7 @@ import React from 'react';
 import superagent from 'superagent';
 
 import './app.scss';
-
+import { useState, useEffect } from 'react'
 // Let's talk about using index.js and some other name in the component folder
 // There's pros and cons for each way of doing this ...
 import Header from './components/header';
@@ -10,40 +10,42 @@ import Footer from './components/footer';
 import Form from './components/form';
 import Results from './components/results';
 
-class App extends React.Component {
+function App() {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            data: null,
-            requestParams: {},
-            history: []
-        };
-    }
+    const [data, setData] = useState({});
+    const [requestParams, setRequestParams] = useState({})
+    const [history, setHistory] = useState([])
 
-    callApi = async (requestParams) => {
-        this.setState({ requestParams });
+    useEffect(() => {
+        callApi(requestParams)
+    }, [requestParams])
+
+    const callApi = async (requestParams) => {
+        console.log(requestParams)
         try {
-            await superagent(requestParams)
-                .then(data => this.setState({ data: data }))
+            await superagent[requestParams.method](requestParams.url)
+                .then(data => setData(data))
         } catch (err) {
-            this.setState({ data: err })
+            setData('Bad request')
             console.log(err)
         }
     }
 
-    render() {
-        return (
-            <React.Fragment>
-                <Header />
-                <Form handleApiCall={this.callApi} />
-                <div data-testid='method'>Request Method: {this.state.requestParams.method}</div>
-                <div>URL: {this.state.requestParams.url}</div>
-                <Results data={this.state.data} />
-                <Footer />
-            </React.Fragment>
-        );
+    const formSubmit = (formData) => {
+        setRequestParams(formData)
+        console.log('form data', formData)
     }
+
+    return (
+        <div className="">
+            <Header />
+            <Form formSubmit={formSubmit} />
+            <div data-testid='method'>Request Method: {requestParams.method}</div>
+            <div>URL: {requestParams.url}</div>
+            <Results data={data} />
+            <Footer />
+        </div>
+    );
 }
 
 export default App;

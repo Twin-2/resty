@@ -1,4 +1,4 @@
-import './results.scss';
+// import './_results.scss';
 import ReactJson from 'react-json-view';
 
 function Results(props) {
