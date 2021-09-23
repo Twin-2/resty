@@ -1,5 +1,7 @@
-@use "./components/form/form.scss";
-@use "./components/header/header.scss";
+@import "./components/form/form.scss";
+@import "./components/header/header.scss";
+@import "./components/footer/footer.scss";
+@import "./components/results/results.scss";
 
 $backgroundColor: #f5f5f5;
 $font-family: "Andale Mono", monospace;

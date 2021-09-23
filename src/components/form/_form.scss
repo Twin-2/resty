@@ -11,15 +11,15 @@ form {
     margin: 1vw 5vw 1vw 2vw;
 
     &.methods {
-      span {
+      button {
         cursor: pointer;
         margin-right: 1rem;
         padding: 0.25rem 0.5rem;
         background: #ccc;
         &:focus {
-          background-color: blue;
+          background-color: rgb(159, 159, 235);
         }
-        &:hover,
+        // &:hover,
         &.active {
           background: #fff;
         }
