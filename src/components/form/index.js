@@ -24,8 +24,6 @@ function Form(props) {
 
     const handleFormSubmit = e => {
         e.preventDefault();
-        // console.log('method', method)
-        // console.log('url', url)
         const formData = {
             method: method,
             url: url,

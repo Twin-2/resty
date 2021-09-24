@@ -4,8 +4,9 @@ import ReactJson from 'react-json-view';
 function Results(props) {
 
     return (
-        <section>
-            <pre>{props.data ? <ReactJson src={props.data.body} /> : null}</pre>
+        <section className='resultsData'>
+            {props.data ? <ReactJson src={props.data.headers} /> : null}
+            {props.data ? <ReactJson src={props.data.body} /> : null}
         </section>
     )
 }
