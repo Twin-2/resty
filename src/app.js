@@ -63,7 +63,6 @@ function App() {
             payload: formData
         }
         dispatch(action)
-        // callApi()
     }
 
     const showHistory = (idx) => {
