@@ -2,7 +2,7 @@ import React from 'react';
 import superagent from 'superagent';
 
 import './app.scss';
-import { useState, useReducer } from 'react'
+import { useState, useReducer, useEffect } from 'react'
 // Let's talk about using index.js and some other name in the component folder
 // There's pros and cons for each way of doing this ...
 import Header from './components/header';
@@ -36,10 +36,10 @@ function App() {
 
     const [state, dispatch] = useReducer(appReducer, initialState);
 
-    const callApi = async (requestParams) => {
-        console.log(requestParams)
+    const callApi = async () => {
+        console.log(state.requestParams)
         try {
-            await superagent[requestParams.method](requestParams.url)
+            await superagent[state.requestParams.method](state.requestParams.url)
                 .then(data => {
                     let setData = {
                         type: 'SET_API_DATA',
@@ -48,7 +48,7 @@ function App() {
                     dispatch(setData)
                     let setHistory = {
                         type: 'SET_HISTORY',
-                        payload: { requestParams, data: data }
+                        payload: { requestParams: state.requestParams, data: data }
                     }
                     console.log('history', setHistory)
                     dispatch(setHistory)
@@ -64,12 +64,12 @@ function App() {
     }
 
     const formSubmit = (formData) => {
-        callApi(formData)
         let action = {
             type: 'SET_REQUEST_PARAMS',
             payload: formData
         }
         dispatch(action)
+        // callApi()
     }
 
     const showHistory = (idx) => {
@@ -85,6 +85,10 @@ function App() {
         }
         dispatch(setRequestParams)
     }
+
+    useEffect(async () => {
+        callApi()
+    }, [state.requestParams])
 
     return (
         <>
