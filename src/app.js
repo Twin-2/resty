@@ -46,12 +46,6 @@ function App() {
                         payload: data
                     }
                     dispatch(setData)
-                    let setHistory = {
-                        type: 'SET_HISTORY',
-                        payload: { requestParams: state.requestParams, data: data }
-                    }
-                    console.log('history', setHistory)
-                    dispatch(setHistory)
                 })
         } catch (err) {
             let action = {
@@ -85,6 +79,15 @@ function App() {
         }
         dispatch(setRequestParams)
     }
+
+    useEffect(() => {
+        let setHistory = {
+            type: 'SET_HISTORY',
+            payload: { requestParams: state.requestParams, data: state.data }
+        }
+        console.log('history', setHistory)
+        state.requestParams?.method ? dispatch(setHistory) : null
+    }, [state.data])
 
     useEffect(async () => {
         callApi()
